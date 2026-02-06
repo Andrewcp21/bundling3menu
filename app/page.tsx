@@ -1,65 +1,95 @@
 import Image from "next/image";
+import BundleCard from "./components/BundleCard";
+import CustomBundleSelector from "./components/CustomBundleSelector";
+import { bundles, CUSTOM_DISCOUNT_PERCENT } from "./data/courses";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen pb-8">
+      {/* Header */}
+      <header className="py-6 flex justify-center">
+        <div className="relative w-32 h-12">
+          <Image
+            src="/images/logo.png"
+            alt="Kinonramekins"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="px-4 pb-8 text-center">
+        <h1 className="text-3xl md:text-4xl font-bold mb-2 tracking-wide">
+          BUNDLING PACKAGE
+        </h1>
+        <p className="text-sm md:text-base opacity-80 max-w-md mx-auto">
+          Cocok untuk hadiah valentine atau stok cemilan Imlek, lho!
+        </p>
+      </section>
+
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-[#4a3728]/95 backdrop-blur-sm border-b border-white/10">
+        <div className="max-w-lg mx-auto px-4 py-3 flex gap-4 justify-center">
+          <a
+            href="#packages"
+            className="px-4 py-2 bg-[#c9943a] text-white rounded-full text-sm font-medium hover:bg-[#a67c2e] transition-colors"
+          >
+            Paket Bundling
+          </a>
+          <a
+            href="#custom"
+            className="px-4 py-2 bg-[#f5f0eb] text-[#4a3728] rounded-full text-sm font-medium hover:bg-[#e5ddd4] transition-colors"
+          >
+            Custom Bundling
+          </a>
+        </div>
+      </nav>
+
+      {/* Pre-made Bundles Section */}
+      <section id="packages" className="px-4 py-8 max-w-2xl mx-auto scroll-mt-20">
+        <h2 className="text-2xl font-bold mb-6 text-center">Pilih Paket Bundling</h2>
+        <div className="space-y-4">
+          {bundles.map((bundle) => (
+            <BundleCard key={bundle.id} bundle={bundle} />
+          ))}
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="max-w-md mx-auto px-8 py-4">
+        <div className="border-t border-white/20 relative">
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#4a3728] px-4 text-sm opacity-70">
+            atau
+          </span>
+        </div>
+      </div>
+
+      {/* Custom Bundle Section */}
+      <section id="custom" className="px-4 py-8 max-w-4xl mx-auto scroll-mt-20">
+        <div className="text-center mb-8">
+          <p className="text-lg italic opacity-80 mb-2">Bingung pilih yang mana?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Customize your package.
+          </h2>
+          <p className="text-sm md:text-base opacity-80 mb-2">
+            Bebas pilih 3 menu favorit kamu dan dapatkan
           </p>
+          <div className="inline-block border-b-2 border-white/50 pb-1">
+            <span className="text-2xl md:text-3xl font-bold">
+              DISCOUNT {CUSTOM_DISCOUNT_PERCENT}%
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        <CustomBundleSelector />
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center py-8 text-sm opacity-60">
+        <p>&copy; {new Date().getFullYear()} Kinonramekins. All rights reserved.</p>
+      </footer>
+    </main>
   );
 }
