@@ -10,7 +10,7 @@ export default function Home() {
       <header className="py-6 flex justify-center">
         <div className="relative w-32 h-12">
           <Image
-            src="/images/logo.png"
+            src="/images/logo2.png"
             alt="Kinonramekins"
             fill
             className="object-contain"
