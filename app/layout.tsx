@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body
-        className={`${montserrat.variable} antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
         {children}
         <SpeedInsights />
