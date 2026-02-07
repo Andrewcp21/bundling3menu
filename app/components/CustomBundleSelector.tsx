@@ -52,6 +52,9 @@ export default function CustomBundleSelector() {
   const handleOrder = () => {
     if (selectedCourses.length < 3) return;
 
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "InitiateCheckout");
+    }
     const courseNames = selectedCourses.map((c) => `- ${c.name} (${formatRupiah(c.price)})`).join("\n");
     const message = encodeURIComponent(
       `Halo, saya ingin memesan paket bundling custom (${selectedCourses.length} kelas):\n\n${courseNames}\n\nTotal: ${formatRupiah(finalPrice)} (diskon ${CUSTOM_DISCOUNT_PERCENT}%, hemat ${formatRupiah(discountAmount)})\n\nTerima kasih!`

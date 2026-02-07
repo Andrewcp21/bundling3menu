@@ -19,6 +19,9 @@ export default function BundleCard({ bundle }: BundleCardProps) {
   };
 
   const handleOrder = () => {
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "InitiateCheckout");
+    }
     const message = encodeURIComponent(
       `Halo, saya ingin memesan paket bundling "${bundle.name}" seharga Rp${bundle.discountedPrice.toLocaleString("id-ID")}. Terima kasih!`
     );
