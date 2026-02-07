@@ -27,9 +27,42 @@ export default function BundleCard({ bundle }: BundleCardProps) {
 
   return (
     <div className="bg-[#f5f0eb] rounded-2xl p-4 text-[#4a3728]">
-      {/* Top section: image, title, items, price */}
-      <div className="flex gap-4 items-start mb-4">
-        <div className="w-28 h-28 md:w-32 md:h-32 relative flex-shrink-0 rounded-xl overflow-hidden">
+      {/* Mobile: stacked vertical layout */}
+      <div className="md:hidden mb-4">
+        <div className="w-full aspect-[16/9] relative rounded-xl overflow-hidden mb-4">
+          <Image
+            src={bundle.image}
+            alt={bundle.name}
+            fill
+            className="object-cover object-top"
+          />
+        </div>
+        <div className="flex gap-3 items-start">
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-lg mb-2">{bundle.name}</h3>
+            <ul className="text-sm space-y-1">
+              {bundle.items.map((item, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span className="text-[#c9943a]">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={`${colorClasses[bundle.color].split(" ")[0]} text-white rounded-full w-[95px] h-[95px] flex flex-col items-center justify-center flex-shrink-0`}>
+            <span className="text-[18px] line-through opacity-70">
+              {formatPrice(bundle.originalPrice)}
+            </span>
+            <span className="text-[25px] font-bold">
+              {formatPrice(bundle.discountedPrice)}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop: horizontal layout */}
+      <div className="hidden md:flex gap-4 items-start mb-4">
+        <div className="w-32 h-32 relative flex-shrink-0 rounded-xl overflow-hidden">
           <Image
             src={bundle.image}
             alt={bundle.name}
@@ -37,10 +70,9 @@ export default function BundleCard({ bundle }: BundleCardProps) {
             className="object-cover"
           />
         </div>
-
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-lg md:text-xl mb-2">{bundle.name}</h3>
-          <ul className="text-sm md:text-base space-y-1">
+          <h3 className="font-bold text-xl mb-2">{bundle.name}</h3>
+          <ul className="text-base space-y-1">
             {bundle.items.map((item, index) => (
               <li key={index} className="flex items-start gap-2">
                 <span className="text-[#c9943a]">•</span>
@@ -49,13 +81,11 @@ export default function BundleCard({ bundle }: BundleCardProps) {
             ))}
           </ul>
         </div>
-
-        {/* Price badge */}
-        <div className={`${colorClasses[bundle.color].split(" ")[0]} text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex flex-col items-center justify-center flex-shrink-0`}>
-          <span className="text-[10px] md:text-xs line-through opacity-70">
+        <div className={`${colorClasses[bundle.color].split(" ")[0]} text-white rounded-full w-[88px] h-[88px] flex flex-col items-center justify-center flex-shrink-0`}>
+          <span className="text-[13px] line-through opacity-70">
             {formatPrice(bundle.originalPrice)}
           </span>
-          <span className="text-lg md:text-xl font-bold">
+          <span className="text-[22px] font-bold">
             {formatPrice(bundle.discountedPrice)}
           </span>
         </div>

@@ -1,11 +1,15 @@
 import Image from "next/image";
 import BundleCard from "./components/BundleCard";
 import CustomBundleSelector from "./components/CustomBundleSelector";
+import CountdownBanner from "./components/CountdownBanner";
 import { bundles, CUSTOM_DISCOUNT_PERCENT } from "./data/courses";
 
 export default function Home() {
   return (
     <main className="min-h-screen pb-8">
+      {/* Countdown Banner */}
+      <CountdownBanner />
+
       {/* Header */}
       <header className="py-6 flex justify-center">
         <div className="relative w-32 h-12">
@@ -30,7 +34,7 @@ export default function Home() {
       </section>
 
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-[#4a3728]/95 backdrop-blur-sm border-b border-white/10">
+      <nav className="sticky top-9 z-40 bg-[#4a3728]/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-lg mx-auto px-4 py-3 flex gap-4 justify-center">
           <a
             href="#packages"
@@ -74,7 +78,7 @@ export default function Home() {
             Customize your package.
           </h2>
           <p className="text-sm md:text-base opacity-80 mb-2">
-            Bebas pilih 3 menu favorit kamu dan dapatkan
+            Pilih <span className="font-bold">minimal 3</span> menu favorit kamu dan dapatkan
           </p>
           <div className="inline-block border-b-2 border-white/50 pb-1">
             <span className="text-2xl md:text-3xl font-bold">
