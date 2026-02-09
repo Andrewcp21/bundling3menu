@@ -325,4 +325,4 @@ export const bundles: Bundle[] = [
 
 export const WHATSAPP_NUMBER = "6289522453978";
 export const CUSTOM_DISCOUNT_PERCENT = 15;
-export const PROMO_END_DATE = "2026-02-14T23:59:59+07:00";
+export const PROMO_END_DATE = "2026-02-17T23:59:59+07:00";
